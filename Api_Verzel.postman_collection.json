@@ -1,0 +1,732 @@
+{
+  "info": {
+    "_postman_id": "183dd5cc-2b3e-480c-b076-cdddb440f8e2",
+    "name": "Api_Verzel",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "46255848",
+    "_collection_link": "https://go.postman.co/collection/46255848-183dd5cc-2b3e-480c-b076-cdddb440f8e2?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Produtos",
+      "item": [
+        {
+          "name": "Produto",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": ""
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Produto/id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://verzel-store.qa-test-verzel-store.workers.dev/api/produtos/{P001}",
+              "protocol": "https",
+              "host": [
+                "verzel-store",
+                "qa-test-verzel-store",
+                "workers",
+                "dev"
+              ],
+              "path": [
+                "api",
+                "produtos",
+                "{P001}"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Pedidos",
+      "item": [
+        {
+          "name": "CT014: Criação de pedido com dados válidos",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"cliente\": {\r\n    \"nome\": \"Maria Silva\",\r\n    \"email\": \"maria@exemplo.com\",\r\n    \"cep\": \"01310-100\"\r\n  },\r\n  \"itens\": [\r\n    { \"produtoId\": \"P005\", \"quantidade\": 1 }\r\n  ],\r\n  \"cupom\": \"BEMVINDO10\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://verzel-store.qa-test-verzel-store.workers.dev/api/pedidos",
+              "protocol": "https",
+              "host": [
+                "verzel-store",
+                "qa-test-verzel-store",
+                "workers",
+                "dev"
+              ],
+              "path": [
+                "api",
+                "pedidos"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "CT015-PED: Criação de pedido com nome sem sobrenome",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"cliente\": {\r\n    \"nome\": \"Flavia\",\r\n    \"email\": \"maria@exemplo.com\",\r\n    \"cep\": \"01310-100\"\r\n  },\r\n  \"itens\": [\r\n    { \"produtoId\": \"P005\", \"quantidade\": 1 }\r\n  ],\r\n  \"cupom\": \"BEMVINDO10\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/pedidos",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "pedidos"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "CT016-PED: Criação de pedido com campo nome vazio",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"cliente\": {\r\n    \"nome\": \"  \",\r\n    \"email\": \"maria@exemplo.com\",\r\n    \"cep\": \"01310-100\"\r\n  },\r\n  \"itens\": [\r\n    { \"produtoId\": \"P005\", \"quantidade\": 1 }\r\n  ],\r\n  \"cupom\": \"BEMVINDO10\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "html"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://verzel-store.qa-test-verzel-store.workers.dev/api/pedidos",
+              "protocol": "https",
+              "host": [
+                "verzel-store",
+                "qa-test-verzel-store",
+                "workers",
+                "dev"
+              ],
+              "path": [
+                "api",
+                "pedidos"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "CT-017-PED: Criação de pedido com e-mail inválido",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"cliente\": {\r\n    \"nome\": \"  \",\r\n    \"email\": \"mariahotmailcom\",\r\n    \"cep\": \"01310-100\"\r\n  },\r\n  \"itens\": [\r\n    { \"produtoId\": \"P005\", \"quantidade\": 1 }\r\n  ],\r\n  \"cupom\": \"BEMVINDO10\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/pedidos",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "pedidos"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "CTI-018-PED: Criação de pedido com CEP válido sem hífen",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"cliente\": {\r\n    \"nome\": \"  \",\r\n    \"email\": \"mariahotmailcom\",\r\n    \"cep\": \"01310100\"\r\n  },\r\n  \"itens\": [\r\n    { \"produtoId\": \"P005\", \"quantidade\": 1 }\r\n  ],\r\n  \"cupom\": \"BEMVINDO10\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/pedidos",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "pedidos"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "CT-019-PED: Criação de pedido com CEP contendo 10 dígitos",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"cliente\": {\r\n    \"nome\": \"  \",\r\n    \"email\": \"mariahotmailcom\",\r\n    \"cep\": \"1020304050\"\r\n  },\r\n  \"itens\": [\r\n    { \"produtoId\": \"P005\", \"quantidade\": 1 }\r\n  ],\r\n  \"cupom\": \"BEMVINDO10\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/pedidos",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "pedidos"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Calcular",
+      "item": [
+        {
+          "name": "CT001-CA:L Aplicar Cupom Válido BEMVINDO10",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status Code deve ser 200\", () => {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\nconst response = pm.response.json();\r\n\r\npm.test(\"Subtotal deve ser R$ 239,70\", () => {\r\n    pm.expect(response.subtotal).to.eql(239.7);\r\n});\r\n\r\npm.test(\"Desconto deve ser R$ 23,97 (10%)\", () => {\r\n    pm.expect(response.desconto).to.eql(23.97);\r\n});\r\n\r\npm.test(\"Frete deve ser grátis\", () => {\r\n    pm.expect(response.frete).to.eql(0);\r\n});\r\n\r\npm.test(\"Frete grátis deve ser verdadeiro\", () => {\r\n    pm.expect(response.freteGratis).to.be.true;\r\n});\r\n\r\npm.test(\"Valor faltante para frete grátis deve ser 0\", () => {\r\n    pm.expect(response.valorFaltanteFreteGratis).to.eql(0);\r\n});\r\n\r\npm.test(\"Total deve ser R$ 215,73\", () => {\r\n    pm.expect(response.total).to.eql(215.73);\r\n});\r\n\r\npm.test(\"Cupom deve estar aplicado\", () => {\r\n    pm.expect(response.cupom.aplicado).to.be.true;\r\n});\r\n\r\npm.test(\"Código do cupom deve ser BEMVINDO10\", () => {\r\n    pm.expect(response.cupom.codigo).to.eql(\"BEMVINDO10\");\r\n});\r\n\r\npm.test(\"Mensagem do cupom deve estar correta\", () => {\r\n    pm.expect(response.cupom.mensagem)\r\n        .to.eql(\"Cupom aplicado: 10% de desconto nos produtos.\");\r\n});\r\n\r\npm.test(\"Deve retornar os dois itens do carrinho\", () => {\r\n    pm.expect(response.itens.length).to.eql(2);\r\n});\r\n\r\npm.test(\"Primeiro item deve ser P002\", () => {\r\n    pm.expect(response.itens[0].produtoId).to.eql(\"P002\");\r\n    pm.expect(response.itens[0].quantidade).to.eql(1);\r\n    pm.expect(response.itens[0].total).to.eql(139.9);\r\n});\r\n\r\npm.test(\"Segundo item deve ser P004\", () => {\r\n    pm.expect(response.itens"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"itens\": [\r\n    { \"produtoId\": \"P002\", \"quantidade\": 1 },\r\n    { \"produtoId\": \"P004\", \"quantidade\": 2 }\r\n  ],\r\n  \"cupom\": \"BEMVINDO10\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://verzel-store.qa-test-verzel-store.workers.dev/api/carrinho/calcular",
+              "protocol": "https",
+              "host": [
+                "verzel-store",
+                "qa-test-verzel-store",
+                "workers",
+                "dev"
+              ],
+              "path": [
+                "api",
+                "carrinho",
+                "calcular"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "CT002-CA:L Aplicar cupom com espaços",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "const response = pm.response.json();\r\n\r\npm.test(\"Status Code deve ser 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\npm.test(\"Cupom deve ser aplicado com sucesso\", function () {\r\n    pm.expect(response.cupom.aplicado).to.eql(true);\r\n});\r\n\r\npm.test(\"Código do cupom deve ser BEMVINDO10\", function () {\r\n    pm.expect(response.cupom.codigo).to.eql(\"BEMVINDO10\");\r\n});\r\n\r\npm.test(\"Mensagem do cupom deve estar correta\", function () {\r\n    pm.expect(response.cupom.mensagem)\r\n        .to.eql(\"Cupom aplicado: 10% de desconto nos produtos.\");\r\n});\r\n\r\npm.test(\"Subtotal deve ser 100,00\", function () {\r\n    pm.expect(response.subtotal).to.eql(100);\r\n});\r\n\r\npm.test(\"Desconto deve ser 10,00\", function () {\r\n    pm.expect(response.desconto).to.eql(10);\r\n});\r\n\r\npm.test(\"Frete deve ser 19,90\", function () {\r\n    pm.expect(response.frete).to.eql(19.9);\r\n});\r\n\r\npm.test(\"Frete grátis deve ser false\", function () {\r\n    pm.expect(response.freteGratis).to.eql(false);\r\n});\r\n\r\npm.test(\"Valor faltante para frete grátis deve ser 100,00\", function () {\r\n    pm.expect(response.valorFaltanteFreteGratis).to.eql(100);\r\n});\r\n\r\npm.test(\"Total deve ser 109,90\", function () {\r\n    pm.expect(response.total).to.eql(109.9);\r\n});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"itens\": [\r\n\t{\r\n  \t\"produtoId\": \"P005\",\r\n  \t\"quantidade\": 1\r\n\t}\r\n  ],\r\n  \"cupom\": \"   BEMVINDO10   \"\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://verzel-store.qa-test-verzel-store.workers.dev/api/carrinho/calcular",
+              "protocol": "https",
+              "host": [
+                "verzel-store",
+                "qa-test-verzel-store",
+                "workers",
+                "dev"
+              ],
+              "path": [
+                "api",
+                "carrinho",
+                "calcular"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "CT004-CAL: Aplicar Cupom Inexistente",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "const response = pm.response.json();\r\n\r\npm.test(\"Status Code deve ser 200\", () => {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\npm.test(\"Cupom não deve ser aplicado\", () => {\r\n    pm.expect(response.cupom.aplicado).to.eql(false);\r\n});\r\n\r\npm.test(\"Mensagem de cupom inválido\", () => {\r\n    pm.expect(response.cupom.mensagem)\r\n        .to.eql(\"Cupom inválido.\");\r\n});\r\n\r\npm.test(\"Desconto deve ser zero\", () => {\r\n    pm.expect(response.desconto).to.eql(0);\r\n});\r\n\r\npm.test(\"Subtotal deve ser 59.90\", () => {\r\n    pm.expect(response.subtotal).to.eql(59.9);\r\n});\r\n\r\npm.test(\"Frete deve ser 19.90\", () => {\r\n    pm.expect(response.frete).to.eql(19.9);\r\n});\r\n\r\npm.test(\"Total deve ser 79.80\", () => {\r\n    pm.expect(response.total).to.eql(79.8);\r\n});\r\n\r\npm.test(\"Frete grátis deve ser false\", () => {\r\n    pm.expect(response.freteGratis).to.eql(false);\r\n});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"itens\": [\r\n    {\r\n      \"produtoId\": \"P001\",\r\n      \"quantidade\": 1\r\n    }\r\n  ],\r\n  \"cupom\": \"BLACK50\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://verzel-store.qa-test-verzel-store.workers.dev/api/carrinho/calcular",
+              "protocol": "https",
+              "host": [
+                "verzel-store",
+                "qa-test-verzel-store",
+                "workers",
+                "dev"
+              ],
+              "path": [
+                "api",
+                "carrinho",
+                "calcular"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "CT005:CAL Aplicar Cupom Expirado",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"itens\": [\r\n    {\r\n      \"produtoId\": \"P001\",\r\n      \"quantidade\": 1\r\n    }\r\n  ],\r\n  \"cupom\": \"VERAO2026\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://verzel-store.qa-test-verzel-store.workers.dev/api/carrinho/calcular",
+              "protocol": "https",
+              "host": [
+                "verzel-store",
+                "qa-test-verzel-store",
+                "workers",
+                "dev"
+              ],
+              "path": [
+                "api",
+                "carrinho",
+                "calcular"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "CT006 BUG:001- CAL: Frete Grátis para Compras a partir de R$ 200,00",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "const response = pm.response.json();\r\n\r\npm.test(\"Status Code deve ser 200\", () => {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\npm.test(\"Subtotal deve ser exatamente R$ 200,00\", () => {\r\n    pm.expect(response.subtotal).to.eql(200);\r\n});\r\n\r\npm.test(\"Frete deve ser R$ 0,00 para subtotal igual a R$ 200,00\", () => {\r\n    pm.expect(response.frete).to.eql(0);\r\n});\r\n\r\npm.test(\"Frete grátis deve ser true para subtotal igual a R$ 200,00\", () => {\r\n    pm.expect(response.freteGratis).to.eql(true);\r\n});\r\n\r\npm.test(\"Valor faltante para frete grátis deve ser 0\", () => {\r\n    pm.expect(response.valorFaltanteFreteGratis).to.eql(0);\r\n});\r\n\r\npm.test(\"Total deve ser igual ao subtotal quando não há desconto nem frete\", () => {\r\n    pm.expect(response.total).to.eql(200);\r\n});\r\n"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"itens\": [\r\n    {\r\n      \"produtoId\": \"P005\",\r\n      \"quantidade\": 2\r\n    }\r\n  ]\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://verzel-store.qa-test-verzel-store.workers.dev/api/carrinho/calcular",
+              "protocol": "https",
+              "host": [
+                "verzel-store",
+                "qa-test-verzel-store",
+                "workers",
+                "dev"
+              ],
+              "path": [
+                "api",
+                "carrinho",
+                "calcular"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "CT007-CAL: Validar Frete Fixo e Valor Faltante para Frete Grátis",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n\"itens\": [\r\n{\r\n\"produtoId\": \"P001\",\r\n\"quantidade\": 1\r\n}\r\n]\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://verzel-store.qa-test-verzel-store.workers.dev/api/carrinho/calcular",
+              "protocol": "https",
+              "host": [
+                "verzel-store",
+                "qa-test-verzel-store",
+                "workers",
+                "dev"
+              ],
+              "path": [
+                "api",
+                "carrinho",
+                "calcular"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "CT008CAL: Validar que o Frete Grátis Considera o Subtotal Antes do Desconto",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "const response = pm.response.json();\r\n\r\npm.test(\"CA08 - Frete deve considerar subtotal antes do desconto\", () => {\r\n\r\n    pm.expect(\r\n        response.subtotal,\r\n        \"Subtotal incorreto\"\r\n    ).to.eql(200);\r\n\r\n    pm.expect(\r\n        response.desconto,\r\n        \"Desconto incorreto\"\r\n    ).to.eql(20);\r\n\r\n    pm.expect(\r\n        response.frete,\r\n        \"Frete deveria ser gratuito para subtotal igual a R$ 200,00\"\r\n    ).to.eql(0);\r\n\r\n    pm.expect(\r\n        response.freteGratis,\r\n        \"Indicador de frete grátis deveria ser true\"\r\n    ).to.eql(true);\r\n\r\n});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"itens\": [\r\n    {\r\n      \"produtoId\": \"P005\",\r\n      \"quantidade\": 2\r\n    }\r\n  ],\r\n  \"cupom\": \"BEMVINDO10\"\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://verzel-store.qa-test-verzel-store.workers.dev/api/carrinho/calcular",
+              "protocol": "https",
+              "host": [
+                "verzel-store",
+                "qa-test-verzel-store",
+                "workers",
+                "dev"
+              ],
+              "path": [
+                "api",
+                "carrinho",
+                "calcular"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "CT009-CAL: Validar que o Desconto do Cupom Não Incide Sobre o Frete",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n\"itens\": [\r\n{\r\n\"produtoId\": \"P001\",\r\n\"quantidade\": 1\r\n}\r\n],\r\n\"cupom\": \"BEMVINDO10\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://verzel-store.qa-test-verzel-store.workers.dev/api/carrinho/calcular",
+              "protocol": "https",
+              "host": [
+                "verzel-store",
+                "qa-test-verzel-store",
+                "workers",
+                "dev"
+              ],
+              "path": [
+                "api",
+                "carrinho",
+                "calcular"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "CT010 -CAL: Validar Quantidade Máxima Permitida por Produto",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "const response = pm.response.json();\r\n\r\npm.test(\"Status Code deve ser 200\", () => {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\npm.test(\"Produto deve ser P001\", () => {\r\n    pm.expect(response.itens[0].produtoId).to.eql(\"P001\");\r\n});\r\n\r\npm.test(\"Quantidade deve ser 5\", () => {\r\n    pm.expect(response.itens[0].quantidade).to.eql(5);\r\n});\r\n\r\npm.test(\"Preço unitário deve ser R$ 59,90\", () => {\r\n    pm.expect(response.itens[0].precoUnitario).to.eql(59.9);\r\n});\r\n\r\npm.test(\"Total do item deve ser R$ 299,50\", () => {\r\n    pm.expect(response.itens[0].total).to.eql(299.5);\r\n});\r\n\r\npm.test(\"Subtotal deve ser R$ 299,50\", () => {\r\n    pm.expect(response.subtotal).to.eql(299.5);\r\n});\r\n\r\npm.test(\"Frete deve ser grátis\", () => {\r\n    pm.expect(response.frete).to.eql(0);\r\n});\r\n\r\npm.test(\"Frete grátis deve ser true\", () => {\r\n    pm.expect(response.freteGratis).to.eql(true);\r\n});\r\n\r\npm.test(\"Valor faltante para frete grátis deve ser 0\", () => {\r\n    pm.expect(response.valorFaltanteFreteGratis).to.eql(0);\r\n});\r\n\r\npm.test(\"Total do pedido deve ser R$ 299,50\", () => {\r\n    pm.expect(response.total).to.eql(299.5);\r\n});\r\n\r\npm.test(\"Desconto deve ser zero\", () => {\r\n    pm.expect(response.desconto).to.eql(0);\r\n});\r\n"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"itens\": [\r\n\t{\r\n  \t\"produtoId\": \"P001\",\r\n  \t\"quantidade\": 5\r\n\t}\r\n  ]\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://verzel-store.qa-test-verzel-store.workers.dev/api/carrinho/calcular",
+              "protocol": "https",
+              "host": [
+                "verzel-store",
+                "qa-test-verzel-store",
+                "workers",
+                "dev"
+              ],
+              "path": [
+                "api",
+                "carrinho",
+                "calcular"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "CT011-CAL: Validar Arredondamento de Valores para 2 Casas Decimais",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n\"itens\": [\r\n{\r\n\"produtoId\": \"P006\",\r\n\"quantidade\": 1\r\n}\r\n],\r\n\"cupom\": \"BEMVINDO10\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://verzel-store.qa-test-verzel-store.workers.dev/api/carrinho/calcular",
+              "protocol": "https",
+              "host": [
+                "verzel-store",
+                "qa-test-verzel-store",
+                "workers",
+                "dev"
+              ],
+              "path": [
+                "api",
+                "carrinho",
+                "calcular"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "CT012 -CAL: Compra de Todos os Produtos",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "const response = pm.response.json();\r\n\r\npm.test(\"Status Code deve ser 200\", () => {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\npm.test(\"Deve retornar 8 produtos no carrinho\", () => {\r\n    pm.expect(response.itens.length).to.eql(8);\r\n});\r\n\r\npm.test(\"Subtotal deve ser R$ 849,40\", () => {\r\n    pm.expect(response.subtotal).to.eql(849.4);\r\n});\r\n\r\npm.test(\"Desconto deve ser R$ 0,00\", () => {\r\n    pm.expect(response.desconto).to.eql(0);\r\n});\r\n\r\npm.test(\"Frete deve ser R$ 0,00\", () => {\r\n    pm.expect(response.frete).to.eql(0);\r\n});\r\n\r\npm.test(\"Frete grátis deve ser true\", () => {\r\n    pm.expect(response.freteGratis).to.eql(true);\r\n});\r\n\r\npm.test(\"Valor faltante para frete grátis deve ser 0\", () => {\r\n    pm.expect(response.valorFaltanteFreteGratis).to.eql(0);\r\n});\r\n\r\npm.test(\"Total deve ser R$ 849,40\", () => {\r\n    pm.expect(response.total).to.eql(849.4);\r\n});\r\n\r\npm.test(\"Cupom deve ser nulo\", () => {\r\n    pm.expect(response.cupom).to.eql(null);\r\n});\r\n"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"itens\": [\r\n    { \"produtoId\": \"P001\", \"quantidade\": 1 },\r\n    { \"produtoId\": \"P002\", \"quantidade\": 1 },\r\n    { \"produtoId\": \"P003\", \"quantidade\": 1 },\r\n    { \"produtoId\": \"P004\", \"quantidade\": 1 },\r\n    { \"produtoId\": \"P005\", \"quantidade\": 1 },\r\n    { \"produtoId\": \"P006\", \"quantidade\": 1 },\r\n    { \"produtoId\": \"P007\", \"quantidade\": 1 },\r\n    { \"produtoId\": \"P008\", \"quantidade\": 1 }\r\n  ]\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/carrinho/calcular",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "carrinho",
+                "calcular"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "CT003-CAL: Aplicar cupom com letras minúsculas",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status Code deve ser 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\nconst response = pm.response.json();\r\n\r\npm.test(\"Cupom em minúsculo deve ser aceito\", function () {\r\n    pm.expect(response.desconto).to.be.greaterThan(0);\r\n});\r\n\r\npm.test(\"Cupom deve ser aplicado com sucesso\", function () {\r\n    pm.expect(response).to.have.property(\"desconto\");\r\n});\r\n\r\npm.test(\"Não deve retornar mensagem de erro\", function () {\r\n    pm.expect(response.mensagem).to.not.eql(\"Cupom inválido.\");\r\n});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"itens\": [\r\n    { \"produtoId\": \"P002\", \"quantidade\": 1 },\r\n    { \"produtoId\": \"P004\", \"quantidade\": 2 },\r\n    {\"produtoId\": \"P003\", \"quantidade\": 4 }\r\n  ],\r\n  \"cupom\": \"bemvindo10\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://verzel-store.qa-test-verzel-store.workers.dev/api/carrinho/calcular",
+              "protocol": "https",
+              "host": [
+                "verzel-store",
+                "qa-test-verzel-store",
+                "workers",
+                "dev"
+              ],
+              "path": [
+                "api",
+                "carrinho",
+                "calcular"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "CT013-BUG-001-CAL: Inclusão de 6 unidades de produto pela API",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n\"itens\": [\r\n{\r\n\"produtoId\": \"P001\",\r\n\"quantidade\": 10\r\n}\r\n],\r\n\"cupom\": \"BEMVINDO10\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/carrinho/calcular",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "carrinho",
+                "calcular"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": ""
+    }
+  ]
+}
